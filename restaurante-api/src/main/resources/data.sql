@@ -1,0 +1,1 @@
+INSERT INTO SITUACAO(id, descricao) VALUES(1, 'Novo'),(2, 'Cancelado'),(3, 'Concluído'),(4, 'Fechado');
