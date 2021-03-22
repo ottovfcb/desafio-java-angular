@@ -2,12 +2,14 @@ package com.desafiojava.restauranteapi.model;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Pedido {
 
     @Id
@@ -40,7 +42,7 @@ public class Pedido {
     @PrePersist
     protected void onCreate() {
         if (Objects.isNull(this.situacao)) {
-            this.situacao = Situacao.builder().id(1L).build();
+            this.situacao = Situacao.builder().id(1L).descricao("Novo").build();
         }
     }
 }
