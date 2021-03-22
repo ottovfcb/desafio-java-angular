@@ -23,27 +23,29 @@ public class PedidoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PedidoDTO> alterarPedido(@RequestParam Long id, @RequestBody PedidoDTO pedidoDTO) {
+    public ResponseEntity<PedidoDTO> alterarPedido(@PathVariable Long id, @RequestBody PedidoDTO pedidoDTO) {
         return ResponseEntity.status(HttpStatus.OK).body(pedidoService.alterarPedido(id, pedidoDTO));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PedidoDTO> detalharPedido(@RequestParam Long id) {
+    public ResponseEntity<PedidoDTO> detalharPedido(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(pedidoService.detalharPedido(id));
     }
 
     @PutMapping("/{id}/cancelar")
-    public ResponseEntity<?> cancelarPedido(@RequestParam Long id) {
+    public ResponseEntity<?> cancelarPedido(@PathVariable Long id) {
+        pedidoService.cancelarPedido(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @PutMapping("/{id}/concluir")
-    public ResponseEntity<?> concluirPedido(@RequestParam Long id) {
+    public ResponseEntity<?> concluirPedido(@PathVariable Long id) {
+        pedidoService.concluirPedido(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping("/fechar-conta/{mesa}")
-    public ResponseEntity<ContaDTO> fecharConta(@RequestParam Long mesa) {
+    public ResponseEntity<ContaDTO> fecharConta(@PathVariable Long mesa) {
         return ResponseEntity.status(HttpStatus.OK).body(pedidoService.fecharConta(mesa));
     }
 
