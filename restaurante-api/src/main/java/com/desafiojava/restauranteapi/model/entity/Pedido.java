@@ -1,4 +1,4 @@
-package com.desafiojava.restauranteapi.model;
+package com.desafiojava.restauranteapi.model.entity;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package com.desafiojava.restauranteapi.model.dto;
 
-import com.desafiojava.restauranteapi.model.Situacao;
+import com.desafiojava.restauranteapi.model.entity.Situacao;
 import lombok.Builder;
 import lombok.Data;
 

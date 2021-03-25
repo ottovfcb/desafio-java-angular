@@ -1,7 +1,7 @@
 package com.desafiojava.restauranteapi.service;
 
-import com.desafiojava.restauranteapi.model.Pedido;
-import com.desafiojava.restauranteapi.model.Situacao;
+import com.desafiojava.restauranteapi.model.entity.Pedido;
+import com.desafiojava.restauranteapi.model.entity.Situacao;
 import com.desafiojava.restauranteapi.model.dto.ContaDTO;
 import com.desafiojava.restauranteapi.model.dto.PedidoDTO;
 import com.desafiojava.restauranteapi.respository.PedidoRepository;

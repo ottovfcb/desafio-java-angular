@@ -1,7 +1,7 @@
 package com.desafiojava.restauranteapi.respository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.desafiojava.restauranteapi.model.Pedido;
+import com.desafiojava.restauranteapi.model.entity.Pedido;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
