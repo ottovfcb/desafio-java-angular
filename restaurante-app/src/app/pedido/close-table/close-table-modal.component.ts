@@ -16,7 +16,7 @@ export class CloseTableModalComponent implements OnInit {
   aviso: any;
 
   constructor(private dialogRef: MatDialogRef<CloseTableModalComponent>,
-    private pedidoService : PedidoService) { }
+    private pedidoService: PedidoService) { }
 
   ngOnInit(): void {
 
@@ -26,7 +26,7 @@ export class CloseTableModalComponent implements OnInit {
 
   }
 
-  fecharPedidos(){
+  fecharPedidos() {
     this.pedidoService.closeTableOrders(this.mesaNumber).subscribe(result => {
       this.data = result
       if (this.data.valorTotal == 0) {
@@ -34,12 +34,13 @@ export class CloseTableModalComponent implements OnInit {
       } else {
         this.aviso = "Pedidos concluídos da mesa " + this.mesaNumber + " foram fechados!"
       }
-      this.tableClosed = true;
+      this.tableClosed = true
     })
   }
 
-  closeModal(){
-    this.dialogRef.close();
-}
+  closeModal() {
+    this.dialogRef.close()
+    window.location.reload()
+  }
 
 }

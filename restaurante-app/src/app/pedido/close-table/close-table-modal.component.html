@@ -3,9 +3,9 @@
 </h1>
 
 <div mat-dialog-content>
-    
+
     <div class="row">
-        <mat-form-field appearence="fill" style="width: 80% !important; height: 100px i !important;">
+        <mat-form-field appearence="fill" style="width: 100% !important; height: 100px !important;">
             <mat-label>Selecione a mesa</mat-label>
             <mat-select [(ngModel)]="mesaNumber">
                 <mat-option *ngFor="let mesa of mesasList" [value]="mesa">
@@ -13,7 +13,6 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
-    <button mat-raised-button  color="primary" style="margin-left: 15px !important;" (click)="fecharPedidos()">Fechar</button>
     </div>
 
     <div class="row" *ngIf="tableClosed">
@@ -24,9 +23,8 @@
 
 </div>
 
-<div  mat-dialog-actions align="end">
-    <button mat-raised-button  color="secondary" (click)="closeModal()">Sair</button>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" style="margin-left: 15px !important;"
+        (click)="fecharPedidos()">Confirmar</button>
+    <button mat-raised-button color="secondary" (click)="closeModal()">Cancelar</button>
 </div>
-
-
-

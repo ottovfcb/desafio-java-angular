@@ -50,6 +50,7 @@ export class MakeOrderModalComponent implements OnInit {
       this.pedidoService.saveOrder(this.item, this.valor, this.mesa).subscribe( () => {
       }).add(() => {
         this.closeModal()
+        window.location.reload()
       });
     }
   }

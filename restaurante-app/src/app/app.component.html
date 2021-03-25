@@ -1,22 +1,24 @@
 <div>
-    <mat-toolbar>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-            <mat-icon (click)="sidenav.open()">menu</mat-icon>
-        </button>
-        <span>Restaurante</span>
-    </mat-toolbar>
-
-
-    <mat-sidenav #sidenav>
-        <p><button mat-icon-button aria-label="icon" (click)="sidenav.close()">
-                <mat-icon>keyboard_arrow_left</mat-icon>
-            </button></p>
-        <p><button mat-button color="primary" (click)="openPedidoDialog()">Novo Pedido</button></p>
-        <p><button mat-button color="secondary" routerLink="/pedido/detalharTodos" routerLinkActive="active"> Listar
-                Pedidos </button></p>
-        <p><button mat-button color="secondary" (click)="openFecharPedidoDialog()"> Fechar Contas </button></p>
-
-    </mat-sidenav>
-
-    <router-outlet></router-outlet>
+    <mat-sidenav-container class="container-nav">
+        <mat-sidenav #sidenav>
+            <p><button mat-icon-button aria-label="icon" (click)="sidenav.close()">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </button></p>
+            <p><button mat-button color="primary" (click)="openPedidoDialog(); sidenav.close()">Novo Pedido</button></p>
+            <p><button mat-button color="secondary" (click)="sidenav.close()" routerLink="/pedido/detalharTodos"
+                    routerLinkActive="active"> Listar
+                    Pedidos </button></p>
+            <p><button mat-button color="secondary" (click)="openFecharPedidoDialog(); sidenav.close()"> Fechar Contas
+                </button></p>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <mat-toolbar color="primary">
+                <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                    <mat-icon (click)="sidenav.open()">menu</mat-icon>
+                </button>
+                <span>Restaurante</span>
+            </mat-toolbar>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 </div>

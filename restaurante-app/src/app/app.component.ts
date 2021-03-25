@@ -20,7 +20,7 @@ export class AppComponent {
   openPedidoDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = "40%"
-    dialogConfig.height = "60%"
+    dialogConfig.height = "auto"
     dialogConfig.id = 'make-order-dialog'
     this.matDialog.open(MakeOrderModalComponent, dialogConfig)
   }
@@ -28,7 +28,7 @@ export class AppComponent {
   openFecharPedidoDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = "40%"
-    dialogConfig.height = "40%"
+    dialogConfig.height = "auto"
     dialogConfig.id = 'make-order-dialog'
     this.matDialog.open(CloseTableModalComponent, dialogConfig)
   }
