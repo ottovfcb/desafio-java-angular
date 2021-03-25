@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>
+    Novo pedido
+</h1>
+
+<div mat-dialog-content>
+    
+    <div class="row">
+        <mat-form-field appearence="fill" style="width: 100% !important; height: 100px !important;">
+            <mat-label> Descrição </mat-label>
+            <textarea matInput [(ngModel)]="item" required></textarea>
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field appearence="fill" style="width: 20% !important;">
+            <mat-label> Valor </mat-label>
+            <input type="number" step="0.01" required matInput [(ngModel)]="valor">
+            <span matPrefix>R$&nbsp;</span>
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field appearence="fill" style="width: 20% !important;">
+            <mat-label> Mesa </mat-label>
+            <input type="number" matInput [(ngModel)]="mesa">
+        </mat-form-field>
+    </div>
+
+</div>
+
+<div  mat-dialog-actions align="end">
+    <button mat-raised-button  color="secondary" (click)="closeModal()">Cancelar</button>
+    <button mat-raised-button  color="primary" (click)="makeOrder()">{{buttonLabel}}</button>
+</div>
+
+

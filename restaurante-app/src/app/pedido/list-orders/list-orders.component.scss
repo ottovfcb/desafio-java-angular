@@ -1,0 +1,40 @@
+.mat-table {
+  min-width: 100% !important;
+}
+
+th.mat-header-cell {
+  text-align: left !important;
+  font-weight: bold;
+  font-size: 15px !important;
+}
+
+td.mat-cell {
+  border-right: 0;
+  padding-right: 1% !important;
+}
+
+td a {
+  margin-right: 10px !important;
+}
+
+.mat-column-graph {
+  width: 20%;
+  max-width: 20%;
+  white-space: normal;
+}
+
+.mat-column-segments {
+  max-width: 70%;
+  white-space: normal;
+}
+
+.mat-column-actions {
+  margin-right: 0% !important;
+  width: 8%;
+  white-space: normal;
+}
+
+.container-fluid {
+  width: 95%;
+  margin: auto;
+}
