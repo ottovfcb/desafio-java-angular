@@ -13,9 +13,9 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long> {
     @Query(value = "SELECT pedido " +
             "FROM Pedido pedido " +
             "WHERE pedido.mesa = ?1 " +
-            "AND pedido.situacao NOT IN (2, 4)" +
+            "AND pedido.situacao = 3" +
             "ORDER BY pedido.id")
-    List<Pedido> fecharContaPorMesa(Long mesa);
+    List<Pedido> buscarContaPorMesa(Long mesa);
 
     @Query(value = "SELECT pedido " +
             "FROM Pedido pedido " +

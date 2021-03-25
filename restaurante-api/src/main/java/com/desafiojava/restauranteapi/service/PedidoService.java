@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,12 +38,12 @@ public class PedidoService {
                 .build();
     }
 
-    public PedidoDTO alterarPedido(Long id, PedidoDTO pedidoDTO) {
-        Optional<Pedido> pedidoOptional = pedidoRepository.findById(id);
+    public PedidoDTO alterarPedido(PedidoDTO pedidoDTO) {
+        Optional<Pedido> pedidoOptional = pedidoRepository.findById(pedidoDTO.getId());
         if (pedidoOptional.isEmpty()) {
             System.out.println("Erro! Objeto não encontrado");
         }
-        Pedido alteraPedido = pedidoOptional.get(); //retorna o pedido do Optional
+        Pedido alteraPedido = pedidoOptional.get();
         alteraPedido.setItem(pedidoDTO.getItem());
         alteraPedido.setValor(pedidoDTO.getValor());
         alteraPedido.setMesa(pedidoDTO.getMesa());
@@ -55,22 +56,6 @@ public class PedidoService {
                 .valor(pedidoAlterado.getValor())
                 .situacao(pedidoAlterado.getSituacao())
                 .mesa(pedidoAlterado.getMesa())
-                .build();
-    }
-
-    public PedidoDTO detalharPedido(Long id) {
-        Optional<Pedido> pedidoOptional = pedidoRepository.findById(id);
-        if (pedidoOptional.isEmpty()) {
-            System.out.println("Erro! Objeto não encontrado");
-        }
-        Pedido pedidoDetalhado = pedidoOptional.get();
-
-        return PedidoDTO.builder()
-                .id(pedidoDetalhado.getId())
-                .item(pedidoDetalhado.getItem())
-                .valor(pedidoDetalhado.getValor())
-                .situacao(pedidoDetalhado.getSituacao())
-                .mesa(pedidoDetalhado.getMesa())
                 .build();
     }
 
@@ -97,12 +82,12 @@ public class PedidoService {
     }
 
     public ContaDTO fecharConta(Long mesa) {
-        List<Pedido> pedidos = pedidoRepository.fecharContaPorMesa(mesa);
+        List<Pedido> pedidos = pedidoRepository.buscarContaPorMesa(mesa);
         List<PedidoDTO> pedidosConta = new ArrayList<>();
         Double valorTotal = 0.0;
 
         for (Pedido pedido : pedidos) {
-            pedido.setSituacao(Situacao.builder().id(4L).build());
+            pedido.setSituacao(Situacao.builder().id(4L).descricao("Fechado").build());
 
             PedidoDTO pedidoDTO = PedidoDTO.builder()
                     .id(pedido.getId())
@@ -142,5 +127,36 @@ public class PedidoService {
         return pedidosPendentes;
     }
 
+    public List<PedidoDTO> listAll(){
+        List<Pedido> pedidos = pedidoRepository.findAll();
+        List<PedidoDTO> todosPedidos = new ArrayList<>();
+
+        for (Pedido pedido : pedidos) {
+            PedidoDTO pedidoDTO = PedidoDTO.builder()
+                    .id(pedido.getId())
+                    .item(pedido.getItem())
+                    .valor(pedido.getValor())
+                    .situacao(pedido.getSituacao())
+                    .mesa(pedido.getMesa())
+                    .build();
+
+            todosPedidos.add(pedidoDTO);
+        }
+        return todosPedidos;
+    }
+
+    public List<Long> listarMesas(){
+        List<Pedido> pedidos = pedidoRepository.findAll();
+        List<Long> mesas = new ArrayList<>();
+
+        pedidos.forEach(pedido -> {
+            mesas.add(pedido.getMesa());
+        });
+
+        List<Long> mesasSemDuplicatas = new ArrayList<>(
+                new HashSet<>(mesas));
+
+        return mesasSemDuplicatas;
+    }
 
 }

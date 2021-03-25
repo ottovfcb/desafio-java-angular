@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/pedidos")
 public class PedidoController {
@@ -17,41 +18,46 @@ public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
 
+    @GetMapping
+    public ResponseEntity<List<PedidoDTO>> listarTodos() {
+        return ResponseEntity.status(HttpStatus.OK).body(pedidoService.listAll());
+    }
+
     @PostMapping
     public ResponseEntity<PedidoDTO> salvar(@RequestBody PedidoDTO pedidoDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(pedidoService.criarPedido(pedidoDTO));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<PedidoDTO> alterarPedido(@PathVariable Long id, @RequestBody PedidoDTO pedidoDTO) {
-        return ResponseEntity.status(HttpStatus.OK).body(pedidoService.alterarPedido(id, pedidoDTO));
+    @PutMapping("/alterarPedido")
+    public ResponseEntity<PedidoDTO> alterarPedido(@RequestBody PedidoDTO pedidoDTO) {
+        return ResponseEntity.status(HttpStatus.OK).body(pedidoService.alterarPedido(pedidoDTO));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PedidoDTO> detalharPedido(@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(pedidoService.detalharPedido(id));
-    }
-
-    @PutMapping("/{id}/cancelar")
-    public ResponseEntity<?> cancelarPedido(@PathVariable Long id) {
+    @PutMapping("/cancelarPedido/{id}")
+    public ResponseEntity<?> cancelarPedido(@PathVariable("id") Long id) {
         pedidoService.cancelarPedido(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @PutMapping("/{id}/concluir")
-    public ResponseEntity<?> concluirPedido(@PathVariable Long id) {
+    @PutMapping("/concluirPedido/{id}")
+    public ResponseEntity<?> concluirPedido(@PathVariable("id") Long id) {
         pedidoService.concluirPedido(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping("/fechar-conta/{mesa}")
-    public ResponseEntity<ContaDTO> fecharConta(@PathVariable Long mesa) {
+    @PutMapping("/fecharConta/{mesa}")
+    public ResponseEntity<ContaDTO> fecharConta(@PathVariable("mesa") Long mesa) {
         return ResponseEntity.status(HttpStatus.OK).body(pedidoService.fecharConta(mesa));
     }
 
     @GetMapping("/pendentes")
     public ResponseEntity<List<PedidoDTO>> buscarPendentes() {
         return ResponseEntity.status(HttpStatus.OK).body(pedidoService.buscarPedidosPendentes());
+    }
+
+    @GetMapping("/listTables")
+    public ResponseEntity<List<Long>> listarMesas() {
+        return ResponseEntity.status(HttpStatus.OK).body(pedidoService.listarMesas());
     }
 
 }
